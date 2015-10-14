@@ -26,7 +26,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-set lines=50
 set tabstop=4        " number of visual spaces per TAB
 set textwidth=79     " PEP8-friendly line length
 set colorcolumn=80   " vertical line at max line length
