@@ -1,20 +1,54 @@
-set expandtab
-set hidden
-set nocompatible
-set noerrorbells
-set number
-set ruler " Text after a double-quote is a comment
-set shiftwidth=4
-set tabstop=4
-set visualbell
+set nocompatible              " be iMproved, required
+filetype off                  " required for Vundle
 
-syntax on
-set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅
-set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\
-\ [%l/%L\ (%p%%)
-filetype plugin indent on
-au FileType py set autoindent
-au FileType py set smartindent
-au FileType py set textwidth=79 " PEP-8 Friendly
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-call pathogen#infect()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'python-rope/ropevim'
+Bundle 'matze/vim-move'
+Bundle 'hdima/python-syntax'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Python syntax highlighting
+let python_highlight_all = 1
+
+colorscheme molokai  " https://github.com/tomasr/molokai
+set nobackup
+set nowritebackup
+set noswapfile
+set lines=40
+set columns=80     " column width
+set lines=50
+set tabstop=4      " number of visual spaces per TAB
+set textwidth=79   " PEP8-friendly line length
+set shiftwidth=4   " how many columns the reindent operations (<< and >>)
+set softtabstop=4  " how many columns when hit Tab in insert mode
+set expandtab      " tabs are spaces
+set number         " show line numbers
+set showcmd        " show command in bottom bar
+set showmatch      " shows matching parentheses
+syntax enable      " enable syntax processing
+
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir,
+                                'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
