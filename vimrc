@@ -30,6 +30,7 @@ set columns=80     " column width
 set lines=50
 set tabstop=4      " number of visual spaces per TAB
 set textwidth=79   " PEP8-friendly line length
+set colorcolumn=80  " vertical line at max line length
 set shiftwidth=4   " how many columns the reindent operations (<< and >>)
 set softtabstop=4  " how many columns when hit Tab in insert mode
 set expandtab      " tabs are spaces
@@ -37,6 +38,8 @@ set number         " show line numbers
 set showcmd        " show command in bottom bar
 set showmatch      " shows matching parentheses
 syntax enable      " enable syntax processing
+
+set clipboard=unnamed  " yank to clipboard
 
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
