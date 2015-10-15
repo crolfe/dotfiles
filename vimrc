@@ -10,6 +10,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'ntpeters/vim-better-whitespace'
 Bundle 'matze/vim-move'
 Bundle 'hdima/python-syntax'
 Bundle 'scrooloose/nerdcommenter'
@@ -29,6 +30,9 @@ imap ;; <Esc>
 
 " space is your leader
 let mapleader = "\<Space>"
+
+" strip whitespace for all files
+autocmd BufWritePre * StripWhitespace
 
 colorscheme molokai  " https://github.com/tomasr/molokai
 set nobackup
