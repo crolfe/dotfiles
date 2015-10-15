@@ -10,16 +10,25 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'python-rope/ropevim'
 Bundle 'matze/vim-move'
 Bundle 'hdima/python-syntax'
+Bundle 'scrooloose/nerdcommenter'
 
 " All plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" vim-move: Ctrl + k/j to move up/down
+let g:move_key_modifier = 'C'
+
 " Python syntax highlighting
 let python_highlight_all = 1
+
+" convenience mapping for ESC
+imap ;; <Esc>
+
+" space is your leader
+let mapleader = "\<Space>"
 
 colorscheme molokai  " https://github.com/tomasr/molokai
 set nobackup
@@ -39,34 +48,5 @@ set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅  " show invisible characters
 syntax enable        " enable syntax processing
 set clipboard=unnamed  " yank to clipboard
 
-" Add the virtualenv's site-packages to vim path
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir,
-                                'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-" strips trailing whitespace at the end of files. this
-" is called on buffer write in the autogroup below.
-function! <SID>StripTrailingWhitespaces()
-    " save last search & cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-" wrap in autocmd in augroup to ensure they are only applied once
-augroup configgroup
-    autocmd!
-    autocmd VimEnter * highlight clear SignColumn
-    autocmd BufWritePre *.py,*.js,*.txt,*.md ▷⋅⋅⋅\:call <SID>StripTrailingWhitespaces()
-augroup END
+"use tabs for go
+autocmd Filetype go setlocal noexpandtab
