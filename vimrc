@@ -11,6 +11,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ntpeters/vim-better-whitespace'
+"Plugin 'fatih/vim-go'
+
 Bundle 'matze/vim-move'
 Bundle 'hdima/python-syntax'
 Bundle 'scrooloose/nerdcommenter'
@@ -19,20 +21,13 @@ Bundle 'scrooloose/nerdcommenter'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" vim-move: Ctrl + k/j to move up/down
-let g:move_key_modifier = 'C'
-
 " Python syntax highlighting
 let python_highlight_all = 1
 
-" convenience mapping for ESC
-imap ;; <Esc>
+" vim-move: Ctrl + k/j to move up/down
+let g:move_key_modifier = 'C'
 
-" space is your leader
-let mapleader = "\<Space>"
-
-" strip whitespace for all files
-autocmd BufWritePre * StripWhitespace
+autocmd BufWritePre * StripWhitespace  " strip whitespace on save
 
 colorscheme molokai  " https://github.com/tomasr/molokai
 set nobackup
@@ -40,7 +35,6 @@ set nowritebackup
 set noswapfile
 
 set tabstop=4        " number of visual spaces per TAB
-set textwidth=79     " PEP8-friendly line length
 set colorcolumn=80   " vertical line at max line length
 set shiftwidth=4     " how many columns the reindent operations (<< and >>) use
 set softtabstop=4    " how many columns when hit Tab in insert mode
@@ -51,6 +45,13 @@ set showmatch        " shows matching parentheses
 set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅  " show invisible characters
 syntax enable        " enable syntax processing
 set clipboard=unnamed  " yank to clipboard
+set backspace=2 " make backspace work like most other apps
 
-"use tabs for go
+" convenience mapping for ESC
+imap ;; <Esc>
+
+" space is your leader
+let mapleader = "\<Space>"
+
+" use tabs for go
 autocmd Filetype go setlocal noexpandtab
