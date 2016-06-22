@@ -1,3 +1,4 @@
+set shell=bash                " for compatability with xonsh
 set nocompatible              " be iMproved, required
 filetype off                  " required for Vundle
 
@@ -7,14 +8,11 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'ntpeters/vim-better-whitespace'
-"Plugin 'fatih/vim-go'
 
-Bundle 'matze/vim-move'
+Bundle 'elzr/vim-json'
 Bundle 'hdima/python-syntax'
+Bundle 'matze/vim-move'
 Bundle 'scrooloose/nerdcommenter'
 
 " All plugins must be added before the following line
@@ -29,7 +27,7 @@ let g:move_key_modifier = 'C'
 
 autocmd BufWritePre * StripWhitespace  " strip whitespace on save
 
-colorscheme molokai  " https://github.com/tomasr/molokai
+colorscheme stereokai  " https://github.com/tomasr/stereokai
 set nobackup
 set nowritebackup
 set noswapfile
@@ -55,3 +53,42 @@ let mapleader = "\<Space>"
 
 " use tabs for go
 autocmd Filetype go setlocal noexpandtab
+
+" format JSON in Visual mode
+map <Leader>j !python -m json.tool<CR>
+
+" python-syntax
+let python_highlight_all = 1
+
+" :PrettyXML
+function! DoPrettyXML()
+  " save the filetype so we can restore it later
+  let l:origft = &ft
+  set ft=
+  " delete the xml header if it exists. This will
+  " permit us to surround the document with fake tags
+  " without creating invalid xml.
+  1s/<?xml .*?>//e
+  " insert fake tags around the entire document.
+  " This will permit us to pretty-format excerpts of
+  " XML that may contain multiple top-level elements.
+  0put ='<PrettyXML>'
+  $put ='</PrettyXML>'
+  silent %!xmllint --format -
+  " xmllint will insert an <?xml?> header. it's easy enough to delete
+  " if you don't want it.
+  " delete the fake tags
+  2d
+  $d
+  " restore the 'normal' indentation, which is one extra level
+  " too deep due to the extra tags we wrapped around the document.
+  silent %<
+  " back to home
+  1
+  " restore the filetype
+  exe "set ft=" . l:origft
+endfunction
+command! PrettyXML call DoPrettyXML()
+
+" show unsaved changes
+command Diff :w !diff % -
