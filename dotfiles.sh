@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp vimrc ~/.vimrc
+cp psqlrc ~/.psqlrc
 
 if [ ! -d  ~/.vim/bundle ]; then
     mkdir -p ~/.vim/bundle
