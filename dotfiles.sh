@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cp psqlrc ~/.psqlrc
+cp zshrc ~/.zshrc
 
 if [ ! -d  ~/.vim/bundle ]; then
     mkdir -p ~/.vim/bundle
