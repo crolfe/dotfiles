@@ -83,7 +83,6 @@ export EDITOR="$VISUAL"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ll='ls -ahl'
-export HOMEBREW_GITHUB_API_TOKEN='e4d7d13f99aa64aed504fa4223cb1cc1445d7b6d'
 export HOMEBREW_NO_ANALYTICS=1
 
 export PATH=/usr/local/bin:$PATH
