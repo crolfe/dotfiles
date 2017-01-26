@@ -9,6 +9,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'hynek/vim-python-pep8-indent'
 
 Bundle 'elzr/vim-json'
 Bundle 'hdima/python-syntax'
@@ -92,3 +93,6 @@ command! PrettyXML call DoPrettyXML()
 
 " show unsaved changes
 command Diff :w !diff % -
+
+" 2 space indentation for yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
