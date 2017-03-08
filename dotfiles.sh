@@ -2,13 +2,12 @@
 
 cp psqlrc ~/.psqlrc
 cp zshrc ~/.zshrc
+cp vimrc ~/.vimrc
 
 if [ ! -d  ~/.vim/bundle ]; then
     mkdir -p ~/.vim/bundle
     git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
 fi
-
-cp -r ./vim/after ~/.vim/after
 
 if [ ! -d  ~/.vim/colors ]; then
     mkdir -p ~/.vim/colors
