@@ -1,0 +1,10 @@
+\x auto
+\set VERBOSITY verbose
+\pset null ¤
+
+
+\pset linestyle unicode
+\pset border 1
+
+-- display query execution time
+\timing
