@@ -9,6 +9,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 Bundle 'elzr/vim-json'
 Bundle 'hdima/python-syntax'
@@ -33,7 +35,7 @@ set nowritebackup
 set noswapfile
 
 set tabstop=4        " number of visual spaces per TAB
-set colorcolumn=80   " vertical line at max line length
+set colorcolumn=120   " vertical line at max line length
 set shiftwidth=4     " how many columns the reindent operations (<< and >>) use
 set softtabstop=4    " how many columns when hit Tab in insert mode
 set expandtab        " tabs are spaces
@@ -44,7 +46,7 @@ set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅  " show invisible characters
 syntax enable        " enable syntax processing
 set clipboard=unnamed  " yank to clipboard
 set backspace=2 " make backspace work like most other apps
-
+set tw=120       " visual select a long line and split it up with gq
 " convenience mapping for ESC
 imap ;; <Esc>
 
@@ -53,6 +55,10 @@ let mapleader = "\<Space>"
 
 " use tabs for go
 autocmd Filetype go setlocal noexpandtab
+
+" use 2 space tabs for html and yaml
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 " format JSON in Visual mode
 map <Leader>j !python -m json.tool<CR>
