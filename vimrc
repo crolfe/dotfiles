@@ -56,9 +56,10 @@ let mapleader = "\<Space>"
 " use tabs for go
 autocmd Filetype go setlocal noexpandtab
 
-" use 2 space tabs for html and yaml
+" use 2 space tabs for html, yaml, and javascript
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 " format JSON in Visual mode
 map <Leader>j !python -m json.tool<CR>
