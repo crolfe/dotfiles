@@ -42,7 +42,6 @@ set expandtab        " tabs are spaces
 set number           " show line numbers
 set showcmd          " show command in bottom bar
 set showmatch        " shows matching parentheses
-set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅  " show invisible characters
 syntax enable        " enable syntax processing
 set clipboard=unnamed  " yank to clipboard
 set backspace=2 " make backspace work like most other apps
