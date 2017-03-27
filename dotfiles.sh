@@ -1,8 +1,26 @@
 #!/bin/bash
 
-cp psqlrc ~/.psqlrc
-cp zshrc ~/.zshrc
-cp vimrc ~/.vimrc
+DOTFILES_DIR="$(dirname $(readlink -f $0))"
+
+function link_conf() {
+    src=$1
+    dest=$2
+
+    if [ ! -f $dest ]; then
+        echo "Linking ${src} to ${dest}"
+        ln -s $DOTFILES_DIR/$src $dest
+    fi
+}
+
+link_conf psqlrc ~/.psqlrcl
+link_conf zshrc ~/.zshrc
+link_conf vimrc ~/.vimrc
+link_conf .Xmodmap ~/.Xmodmap
+link_conf .xsession ~/.xsession
+
+if [ ! -d  ~/.i3 ]; then
+    ln -s $DOTFILES_DIR/.i3 ~/.i3
+fi
 
 if [ ! -d  ~/.vim/bundle ]; then
     mkdir -p ~/.vim/bundle

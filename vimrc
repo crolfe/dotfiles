@@ -16,6 +16,7 @@ Bundle 'elzr/vim-json'
 Bundle 'hdima/python-syntax'
 Bundle 'matze/vim-move'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'vim-syntastic/syntastic'
 
 " All plugins must be added before the following line
 call vundle#end()            " required
@@ -98,3 +99,14 @@ command! PrettyXML call DoPrettyXML()
 
 " show unsaved changes
 command Diff :w !diff % -
+
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0"

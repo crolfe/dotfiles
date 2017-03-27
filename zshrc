@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/share:/home/colin/.local:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/colin/.oh-my-zsh
+export ZSH=/home/colin/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -84,7 +85,3 @@ export EDITOR="$VISUAL"
 
 alias ll='ls -ahl'
 export HOMEBREW_NO_ANALYTICS=1
-
-export PATH=/usr/local/bin:$PATH
-
-cd ~/Programming
