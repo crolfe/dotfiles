@@ -102,8 +102,8 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-assign [class="Firefox"] $workspace2
 assign [class="Mate-terminal"] $workspace1
+assign [class="Firefox"] $workspace2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -163,32 +163,7 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
-
-client.focused             $base01  $base01  $base07  $base0F
-client.unfocused           $base02  $base02  $base03  $base0F
-client.focused_inactive    $base02  $base02  $base03  $base0F
-client.urgent              $base02  $base08  $base00  $base0F
-
 hide_edge_borders both
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-    #colors {
-        #separator $base03
-        #background $base01
-        #statusline $base05
-
-        ## workspace name       border     background    text
-        #focused_workspace      $base01    $base01       $base07
-        #active_workspace       $base01    $base02       $base03
-        #inactive_workspace     $base01    $base01       $base03
-        #urgent_workspace       $base01    $base01       $base08
-    #}
-    #font pango:Inconsolata Regular 11, FontAwesome 11
-    #position top
-    #status_command i3status -c ~/.i3/i3status.conf
-#}
 
 # custom bindings
 bindsym $mod+shift+x exec ~/.lock/lock.sh ~/.lock/lock.png
@@ -212,6 +187,10 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext  exec playerctl next
 bindsym XF86AudioPrev  exec playerctl previous
 
+# needs i3-gaps for this to work
+gaps inner 2
+gaps outer 2
+
 exec mate-terminal  # will be sent to workspace 1
 exec firefox  # will be sent to workspace 2
 exec --no-startup-id xautolock -time 5 -detectsleep -locker '/home/colin/.lock/lock.sh /home/colin/.lock/lock.png"
@@ -219,3 +198,9 @@ exec --no-startup-id compton  # gives roffi some transparency
 exec_always --no-startup-id "/home/colin/dotfiles/scripts/polybar.sh"
 exec_always feh --bg-scale /home/colin/Pictures/saltspringisland.jpg  # set a wallpaper
 exec_always --no-startup-id "xrdb -merge ~/.Xresources"
+
+# from i3-style theme "tomorrow-night-80s"
+client.focused #99cc99 #99cc99 #000000 #2d2d2d
+client.focused_inactive #393939 #393939 #888888 #292d2e
+client.unfocused #2d2d2d #2d2d2d #999999 #292d2e
+client.urgent #2f343a #900000 #ffffff #900000
