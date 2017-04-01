@@ -11,6 +11,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tomasr/molokai'
 
 Bundle 'elzr/vim-json'
 Bundle 'hdima/python-syntax'
@@ -110,3 +112,24 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0"
+
+" use silver searcher instead of ack for :grep
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+nmap <silent> <RIGHT> :cnext<CR>
+nmap <silent> <LEFT> :cprev<CR>
+
+" set colour of selected text to Grey
+hi Visual term=reverse cterm=reverse guibg=Grey
+
+" show line number, column number etc
+set ruler

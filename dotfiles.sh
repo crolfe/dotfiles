@@ -16,6 +16,7 @@ link_conf psqlrc ~/.psqlrcl
 link_conf zshrc ~/.zshrc
 link_conf vimrc ~/.vimrc
 link_conf .Xmodmap ~/.Xmodmap
+link_conf .Xresources ~/.Xresources
 link_conf .xsession ~/.xsession
 
 if [ ! -d  ~/.i3 ]; then

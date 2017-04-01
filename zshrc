@@ -85,3 +85,10 @@ export EDITOR="$VISUAL"
 
 alias ll='ls -ahl'
 export HOMEBREW_NO_ANALYTICS=1
+
+function disable_trackpad() {
+    ID=`xinput list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
+    xinput set-prop $ID "Device Enabled" 0
+}
+
+disable_trackpad
