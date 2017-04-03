@@ -38,7 +38,7 @@ set nowritebackup
 set noswapfile
 
 set tabstop=4        " number of visual spaces per TAB
-set colorcolumn=120   " vertical line at max line length
+set colorcolumn=80   " vertical line at max line length
 set shiftwidth=4     " how many columns the reindent operations (<< and >>) use
 set softtabstop=4    " how many columns when hit Tab in insert mode
 set expandtab        " tabs are spaces

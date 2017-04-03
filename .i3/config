@@ -12,7 +12,7 @@ font pango:Inconsolata Regular 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec mate-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -75,35 +75,42 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1. Terminal"
-set $workspace2 "2. Firefox "
-
+set $workspace1 "1. "
+set $workspace2 "2.  "
+set $workspace3 "3. "
+set $workspace4 "4. ""
+set $workspace5 "5. "
+set $workspace6 "6. "
+set $workspace7 "7. "
+set $workspace8 "8. "
+set $workspace9 "9. "
+set $workspace10 "10 "
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
-assign [class="Mate-terminal"] $workspace1
-assign [class="Firefox"] $workspace2
+#assign [class="Mate-terminal"] $workspace1
+#assign [class="Firefox"] $workspace2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,12 +198,15 @@ bindsym XF86AudioPrev  exec playerctl previous
 gaps inner 2
 gaps outer 2
 
-exec mate-terminal  # will be sent to workspace 1
-exec firefox  # will be sent to workspace 2
+exec termite
+exec firefox
 exec --no-startup-id xautolock -time 5 -detectsleep -locker '/home/colin/.lock/lock.sh /home/colin/.lock/lock.png"
-exec --no-startup-id compton  # gives roffi some transparency
+# gives roffi some transparency
+exec --no-startup-id compton
+exec --no-startup-id display-visor -i -l LID -f -0 LVDS-1 -1 DP-1
+exec_always --no-startup-id ~/bin/xmodmap_reload.py
 exec_always --no-startup-id "/home/colin/dotfiles/scripts/polybar.sh"
-exec_always feh --bg-scale /home/colin/Pictures/saltspringisland.jpg  # set a wallpaper
+exec_always feh --bg-scale /home/colin/install/files/space.png  # set a wallpaper
 exec_always --no-startup-id "xrdb -merge ~/.Xresources"
 
 # from i3-style theme "tomorrow-night-80s"
