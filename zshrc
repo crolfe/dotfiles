@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/usr/local/bin:/usr/local/share:/home/colin/.local:$PATH
+export PATH=/usr/local/bin:/usr/local/share:/home/colin/.local:/home/colin/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/colin/.oh-my-zsh
@@ -52,7 +52,7 @@ ZSH_THEME="pygmalion"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx vagrant)
+plugins=(git vagrant ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,7 +84,13 @@ export EDITOR="$VISUAL"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ll='ls -ahl'
+alias wifi='sudo nmtui'
+alias pro='cd ~/Programming/procurify/procurify'
+
 export HOMEBREW_NO_ANALYTICS=1
+
+# Import colorscheme from 'wal'
+(wal -r &)
 
 function disable_trackpad() {
     ID=`xinput list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`

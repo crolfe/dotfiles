@@ -20,6 +20,8 @@ link_conf .Xresources ~/.Xresources
 link_conf .xsession ~/.xsession
 link_conf .polybar.conf ~/.polybar.conf
 link_conf config/termite ~/.config/termite
+link_conf .gitignore  ~/.gitignore
+link_conf .gitconfig  ~/.gitconfig
 
 if [ ! -d  ~/.i3 ]; then
     ln -s $DOTFILES_DIR/.i3 ~/.i3

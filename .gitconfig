@@ -1,3 +1,7 @@
 [user]
 	email = crolfe@gmail.com
 	name = Colin Rolfe
+[core]
+	excludesfile = /home/colin/.gitignore
+[push]
+	default = simple

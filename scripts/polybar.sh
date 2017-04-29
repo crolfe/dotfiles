@@ -4,8 +4,10 @@ killall -q polybar
 
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
-polybar -c $HOME/.polybar.conf top &
-polybar -c $HOME/.polybar.conf bottom &
+MONITOR=LVDS-1 polybar -c $HOME/.polybar.conf top &
+MONITOR=DP-1 polybar -c $HOME/.polybar.conf top &
+MONITOR=LVDS-1 polybar -c $HOME/.polybar.conf bottom &
+MONITOR=DP-1 polybar -c $HOME/.polybar.conf bottom &
 
 #if [ $(hostname) = 'annedouwe-pc' ]; then
 	#MONITOR=VGA-1 polybar -c $HOME/.polybar.conf bar &
