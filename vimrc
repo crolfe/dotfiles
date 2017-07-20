@@ -33,6 +33,7 @@ let g:move_key_modifier = 'C'
 autocmd BufWritePre * StripWhitespace  " strip whitespace on save
 
 colorscheme stereokai  " https://github.com/tomasr/stereokai
+set background=dark
 set nobackup
 set nowritebackup
 set noswapfile

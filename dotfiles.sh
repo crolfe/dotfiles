@@ -6,7 +6,7 @@ function link_conf() {
     src=$1
     dest=$2
 
-    if [ ! -f $dest ]; then
+    if [ ! -L $dest ]; then
         echo "Linking ${src} to ${dest}"
         ln -s $DOTFILES_DIR/$src $dest
     fi
@@ -19,9 +19,13 @@ link_conf .Xmodmap ~/.Xmodmap
 link_conf .Xresources ~/.Xresources
 link_conf .xsession ~/.xsession
 link_conf .polybar.conf ~/.polybar.conf
-link_conf config/termite ~/.config/termite
+link_conf $DOTFILES_DIR/config/termite ~/.config/termite
 link_conf .gitignore  ~/.gitignore
 link_conf .gitconfig  ~/.gitconfig
+
+link_conf $DOTFILES_DIR/scripts/power.sh ~/bin/power.sh
+link_conf $DOTFILES_DIR/scripts/polybar.sh ~/bin/polybar.sh
+cp -r $DOTFILES_DIR/.lock/ ~/.lock
 
 if [ ! -d  ~/.i3 ]; then
     ln -s $DOTFILES_DIR/.i3 ~/.i3

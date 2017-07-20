@@ -86,11 +86,10 @@ export EDITOR="$VISUAL"
 alias ll='ls -ahl'
 alias wifi='sudo nmtui'
 alias pro='cd ~/Programming/procurify/procurify'
-
-export HOMEBREW_NO_ANALYTICS=1
+alias calc=gnome-calculator
 
 # Import colorscheme from 'wal'
-(wal -r &)
+#(wal -r &)
 
 function disable_trackpad() {
     ID=`xinput list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
@@ -98,3 +97,18 @@ function disable_trackpad() {
 }
 
 disable_trackpad
+
+TERM=xterm-256color
+
+# added by travis gem
+[ -f /home/colin/.travis/travis.sh ] && source /home/colin/.travis/travis.sh
+
+function kill_slack () {
+    for pid in $(pgrep slack);
+    do
+        kill -9 $pid
+    done
+}
+
+alias pdf='evince'
+alias pytest=~/Programming/procurify/procurify/bin/run_backend_tests.sh
