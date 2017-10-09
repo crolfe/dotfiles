@@ -17,7 +17,8 @@ bindsym $mod+Return exec mate-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec zsh -c "rofi -rnow -show run -lines 5 -eh 2 -width 100 -padding 250 -opacity \"80\" -bw 0 -bc \"$base01\" -bg \"$base02\" -fg "$base07\" -hlbg \"$base05\" -columns 2 -font \"Inconsolata Regular 18\" -hlfg \"#9575cd\""
+# rofi.sh expects ~/.cache/wal/colors.sh to be created by running wal
+bindsym $mod+d exec sh ~/bin/rofi.sh run
 
 # change focus
 bindsym $mod+h focus left
@@ -144,35 +145,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color             #2f343f
-set $inactive-bg-color    #2f343f
-set $text-color           #f3f4f5
-set $inactive-text-color  #676E7D
-set $urgent-bg-color      #E53935
-set $indicator            #00ff00
-
-set $base00 #101218
-set $base01 #1f222d
-set $base02 #252936
-set $base03 #7780a1
-set $base04 #C0C5CE
-set $base05 #d1d4e0
-set $base06 #C9CCDB
-set $base07 #ffffff
-set $base08 #ee829f
-set $base09 #f99170
-set $base0A #ffefcc
-set $base0B #a5ffe1
-set $base0C #97e0ff
-set $base0D #97bbf7
-set $base0E #c0b7f9
-set $base0F #fcc09e
-
-hide_edge_borders both
-
 # custom bindings
 bindsym $mod+shift+x exec ~/.lock/lock.sh ~/.lock/lock.png
-bindsym $mod+z exec "/home/colin/dotfiles/scripts/power.sh"
+bindsym $mod+z exec "~/dotfiles/scripts/power.sh"
 
 # screenshots
 bindsym Print exec screen.sh root
@@ -183,37 +158,37 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-# # Sreen brightness controls
+# Screen brightness controls
 bindsym XF86MonBrightnessUp   exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # needs i3-gaps for this to work
-gaps inner 10
-gaps outer 10
+gaps inner 4
+gaps outer 4
 
 exec mate-terminal
 exec firefox
 exec spotify
 
-#exec --no-startup-id xautolock -time 30 -detectsleep -locker '/home/colin/.lock/lock.sh /home/colin/.lock/lock.png"
-
-# gives roffi some transparency
+# gives rofi some transparency
 exec --no-startup-id compton
+
 exec --no-startup-id slack
 exec --no-startup-id tlp start
-exec_always --no-startup-id display-visor -i -l LID -f -0 eDP1 -1 HDMI2
+exec --no-startup-id display-visor -l LID
 exec_always --no-startup-id ~/bin/xmodmap_reload.py
-exec_always --no-startup-id "/home/colin/bin/polybar.sh"
-exec_always feh --bg-scale /home/colin/install/files/space.png  # set a wallpaper
+exec_always --no-startup-id "~/bin/polybar.sh"
 exec_always --no-startup-id "xrdb -merge ~/.Xresources"
 
-# Cycle wallpapers and apply new colorscheme.
-bindsym $mod+p exec "wal -i $HOME/Pictures/Wallpapers -o wal-set"
+# set wallpaper and and extract colours from it
+exec_always wal -i ~/Pictures/Wallpapers/painting.jpg
 
+# draw a high contrast border around focused container
+client.focused #ffffff #ffffff #ffffff #ffffff
 
-# from i3-style theme "tomorrow-night-80s"
+# draw a smart N pixel border around containers
+for_window [class="^.*"] border pixel 3
 
-client.focused #586e75 #586e75 #fdf6e3 #268bd2
-client.focused_inactive #073642 #073642 #93a1a1 #002b36
-client.unfocused #002b36 #002b36 #586e75 #002b36
-client.urgent #dc322f #dc322f #fdf6e3 #dc322f
+# draw a border around containers only if there are > 1 containers in current workspace
+smart_borders on
+smart_gaps off
