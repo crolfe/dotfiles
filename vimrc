@@ -13,6 +13,8 @@ Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
+Plugin 'posva/vim-vue'
+Plugin 'hashivim/vim-terraform'
 
 Bundle 'elzr/vim-json'
 Bundle 'hdima/python-syntax'
@@ -62,6 +64,8 @@ autocmd Filetype go setlocal noexpandtab
 " use 2 space tabs for html, yaml, and javascript
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType tf setlocal shiftwidth=2 tabstop=2
+autocmd FileType vue setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 " format JSON in Visual mode
@@ -134,3 +138,7 @@ hi Visual term=reverse cterm=reverse guibg=Grey
 
 " show line number, column number etc
 set ruler
+
+" Allow vim-terraform to override indentation syntax for matching files. Defaults to 0 which is off.
+let g:terraform_align=1
+
