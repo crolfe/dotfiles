@@ -7,10 +7,11 @@ function link_conf() {
     dest=$2
 
     if [ ! -L $dest ]; then
-        echo "Linking ${src} to ${dest}"
+        echo "Linking ${DOTFILES_DIR}/${src} to ${dest}"
         ln -s $DOTFILES_DIR/$src $dest
     fi
 }
+echo $DOTFILES_DIR
 
 link_conf psqlrc ~/.psqlrcl
 link_conf zshrc ~/.zshrc
@@ -19,12 +20,14 @@ link_conf .Xmodmap ~/.Xmodmap
 link_conf .Xresources ~/.Xresources
 link_conf .xsession ~/.xsession
 link_conf .polybar.conf ~/.polybar.conf
-link_conf $DOTFILES_DIR/config/termite ~/.config/termite
+link_conf config/termite ~/.config/termite
 link_conf .gitignore  ~/.gitignore
 link_conf .gitconfig  ~/.gitconfig
 
-link_conf $DOTFILES_DIR/scripts/power.sh ~/bin/power.sh
-link_conf $DOTFILES_DIR/scripts/polybar.sh ~/bin/polybar.sh
+link_conf scripts/battery.py ~/bin/battery.py
+link_conf scripts/polybar.sh ~/bin/polybar.sh
+link_conf scripts/power.sh ~/bin/power.sh
+link_conf scripts/rofi.sh ~/bin/rofi.sh
 cp -r $DOTFILES_DIR/.lock/ ~/.lock
 
 if [ ! -d  ~/.i3 ]; then
